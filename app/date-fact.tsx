@@ -7,6 +7,22 @@ export default function DateFact() {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
 
+  const [open, setOpen] =  useState(false);
+  const [items, setItems] = useState([
+    {label: 'January', month: 1},
+    {label: 'February', month: 2},
+    {label: 'March', month: 3},
+    {label: 'April', month: 4},
+    {label: 'May', month: 5},
+    {label: 'June', month: 6},
+    {label: 'July', month: 7},
+    {label: 'August', month: 8},
+    {label: 'September', month: 9},
+    {label: 'October', month: 10},
+    {label: 'November', month: 11},
+    {label: 'December', month: 12},
+  ]);
+
   const monthNum = parseInt(month);
   const dayNum = parseInt(day);
   const isValidDate = monthNum >= 1 && monthNum <= 12 && dayNum >= 1 && dayNum <= 31;
@@ -16,12 +32,13 @@ export default function DateFact() {
       <Text style={styles.title}>Enter a Date to Get a Fact</Text>
 
       {/* Month Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Enter Month (1-12)"
-        keyboardType="numeric"
-        value={month}
-        onChangeText={setMonth}
+      <DropDownPicker
+        open={open}
+        month={month}
+        items={items}
+        setOpen={setOpen}
+        setMonth={setMonth}
+        setItems={setItems}
       />
 
       {/* Day Input */}
